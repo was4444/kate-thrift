@@ -9,6 +9,9 @@
     author="Morris Stock (seventhese@gmail.com)"
     license="LGPL">
   <highlighting>
+    <list name="Keyword">
+      <item>extends</item>
+    </list>
     <list name="NamespaceScope">
       <item>*</item>
       <item>cocoa</item>
@@ -68,6 +71,7 @@
             firstNonSpace="true" insensitive="false"
             attribute="Keyword"/>
 
+        <keyword String="Keyword" context="#stay" attribute="Keyword"/>
         <keyword String="Definition" context="#stay" attribute="Keyword"/>
         <keyword String="Modifier" context="#stay" attribute="Keyword"/>
         <keyword String="Attribute" context="#stay" attribute="Keyword"/>
