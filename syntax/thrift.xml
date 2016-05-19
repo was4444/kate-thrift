@@ -116,7 +116,7 @@
         <keyword
             String="NamespaceScope" context="#stay"
             attribute="Namespace Scope"/>
-        <LineContinue context="#stay" attribute="Normal Text"/>
+        <DetectIdentifier context="#pop" attribute="Normal Text"/>
       </context>
 
       <context name="String" lineEndContext="#pop" attribute="String">
