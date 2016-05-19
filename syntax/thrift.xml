@@ -74,6 +74,8 @@
         <keyword String="BaseType" context="#stay" attribute="Data Type"/>
         <keyword String="ContainerType" context="#stay" attribute="Data Type"/>
 
+        <DetectChar char="'" context="String" attribute="String"/>
+
         <DetectChar char="#" context="Commentar 1" attribute="Comment"/>
         <Detect2Chars
             char="/" char1="/" context="Commentar 1"
@@ -102,6 +104,12 @@
             String="NamespaceScope" context="#stay"
             attribute="Namespace Scope"/>
         <LineContinue context="#stay" attribute="Normal Text"/>
+      </context>
+
+      <context name="String" lineEndContext="#pop" attribute="String">
+        <LineContinue context="#stay" attribute="String"/>
+        <HlCStrinChar context="#stay" attribute="String Char"/>
+        <DetectChar char="'" context="#pop" attribute="String"/>
       </context>
 
       <context name="Commentar 1" lineEndContext="#pop" attribute="Comment">
