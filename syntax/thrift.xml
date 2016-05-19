@@ -75,7 +75,7 @@
         <keyword String="Definition" context="#stay" attribute="Keyword"/>
         <keyword String="Modifier" context="#stay" attribute="Keyword"/>
         <keyword String="Attribute" context="#stay" attribute="Keyword"/>
-        <keyword String="BaseType" context="Data Type" attribute="Data Type"/>
+        <keyword String="BaseType" context="#stay" attribute="Data Type"/>
         <keyword String="ContainerType" context="#stay" attribute="Data Type"/>
 
         <Float context="#stay" attribute="Float">
@@ -123,11 +123,6 @@
         <LineContinue context="#stay" attribute="String"/>
         <HlCStrinChar context="#stay" attribute="String Char"/>
         <DetectChar char="'" context="#pop" attribute="String"/>
-      </context>
-
-      <context name="Data Type" lineEndContext="#pop" attribute="Variable">
-        <LineContinue context="#stay" attribute="Variable"/>
-        <DetectIdentifier attribute="Variable"/>
       </context>
 
       <context name="Commentar 1" lineEndContext="#pop" attribute="Comment">
