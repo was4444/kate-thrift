@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language
+    name="Thrift"
+    section="Sources"
+    extensions="*.thrift"
+    mimetype="text/plain;text/x-c;"
+    version="0.1"
+    author="Morris Stock (seventhese@gmail.com)"
+    license="LGPL">
+  <highlighting>
+    <list name="Header">
+      <item>include</item>
+      <item>cpp_include</item>
+      <item>namespace</item>
+    </list>
+    <list name="NamespaceScope">
+      <item>*</item>
+      <item>cpp</item>
+      <item>java</item>
+      <item>py</item>
+      <item>perl</item>
+      <item>rb</item>
+      <item>cocoa</item>
+      <item>csharp</item>
+    </list>
+    <list name="Definition">
+      <item>const</item>
+      <item>typedef</item>
+      <item>enum</item>
+      <item>struct</item>
+      <item>union</item>
+      <item>exception</item>
+      <item>service</item>
+    </list>
+    <list name="FieldRequireness">
+      <item>required</item>
+      <item>optional</item>
+    </list>
+    <list name="Function">
+      <item>oneway</item>
+      <item>void</item>
+      <item>throws</item>
+    </list>
+    <list name="BaseType">
+      <item>bool</item>
+      <item>byte</item>
+      <item>i16</item>
+      <item>i32</item>
+      <item>i64</item>
+      <item>double</item>
+      <item>string</item>
+      <item>binary</item>
+    </list>
+    <list name="ContainerType">
+      <item>map</item>
+      <item>set</item>
+      <item>list</item>
+      <item>cpp_type</item>
+    </list>
+
+    <contexts>
+      <context name="Normal" lineEndContext="#stay" attribute="Normal Text">
+        <DetectSpaces/>
+        <DetectChar char="#" context="Commentar 1" attribute="Comment"/>
+        <Detect2Chars
+            char="/" char1="/" context="Commentar 1"
+            attribute="Comment"/>
+        <Detect2Chars
+            char="/" char1="*" context="Commentar 2"
+            attribute="Comment" beginRegion="Comment"/>
+      </context>
+
+      <context name="Commentar 1" lineEndContext="#pop" attribute="Comment">
+        <LineContinue context="#stay" attribute="Comment"/>
+        <IncludeRules context="##Alerts"/>
+      </context>
+      <context name="Commentar 2" lineEndContext="#stay" attribute="Comment">
+        <Detect2Chars
+            char="*" char1="/" context="#pop"
+            attribute="Comment" endRegion="Comment"/>
+        <IncludeRules context="##Alerts"/>
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="true"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword" spellChecking="false"/>
+      <itemData name="Data Type" defStyleNum="dsDataType" spellChecking="false"/>
+      <itemData name="Comment" defStyleNum="dsComment" spellChecking="true"/>
+      <itemData name="Function" defStyleNum="dsFunction" spellChecking="false"/>
+
+      <itemData name="Decimal" defStyleNum="dsDecVal" spellChecking="false"/>
+      <itemData name="Octal" defStyleNum="dsBaseN" spellChecking="false"/>
+      <itemData name="Hex" defStyleNum="dsBaseN" spellChecking="false"/>
+      <itemData name="Float" defStyleNum="dsFloat" spellChecking="false"/>
+      <itemData name="Char" defStyleNum="dsChar" spellChecking="false"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="String Char" defStyleNum="dsChar"/>
+
+      <itemData name="Symbol" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Alert" defStyleNum="dsAlert" spellChecking="false"/>
+      <itemData name="Error" defStyleNum="dsError" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+
+  <general>
+    <comments>
+      <comment name="singleLine" start="#"/>
+      <comment name="singleLine" start="//"/>
+      <comment name="multiLine" start="/*" end="*/" region="Comment"/>
+    </comments>
+    <keywords casesensitive="1"/>
+  </general>
+</language>
+<!-- kate: indent-width 2; tab-width 2; -->
