@@ -62,6 +62,14 @@
     <contexts>
       <context name="Normal" lineEndContext="#stay" attribute="Normal Text">
         <DetectSpaces/>
+        <keyword String="Header" context="#stay" attribute="Keyword"/>
+        <keyword String="NamespaceScope" context="#stay" attribute="Keyword"/>
+        <keyword String="Definition" context="#stay" attribute="Keyword"/>
+        <keyword String="FieldRequireness" context="#stay" attribute="Keyword"/>
+        <keyword String="Function" context="#stay" attribute="Keyword"/>
+        <keyword String="BaseType" context="#stay" attribute="Data Type"/>
+        <keyword String="ContainerType" context="#stay" attribute="Data Type"/>
+
         <DetectChar char="#" context="Commentar 1" attribute="Comment"/>
         <Detect2Chars
             char="/" char1="/" context="Commentar 1"
