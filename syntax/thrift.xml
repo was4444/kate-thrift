@@ -9,23 +9,21 @@
     author="Morris Stock (seventhese@gmail.com)"
     license="LGPL">
   <highlighting>
-    <list name="Header">
-      <item>include</item>
-      <item>cpp_include</item>
-      <item>namespace</item>
-    </list>
     <list name="NamespaceScope">
       <item>*</item>
-      <item>cpp</item>
-      <item>java</item>
-      <item>py</item>
-      <item>perl</item>
-      <item>rb</item>
       <item>cocoa</item>
+      <item>cpp</item>
       <item>csharp</item>
+      <item>d</item>
+      <item>haxe</item>
+      <item>java</item>
+      <item>perl</item>
+      <item>php</item>
+      <item>py</item>
+      <item>rb</item>
     </list>
     <list name="Definition">
-      <item>const</item>
+      <item>void</item>
       <item>typedef</item>
       <item>enum</item>
       <item>struct</item>
@@ -33,13 +31,13 @@
       <item>exception</item>
       <item>service</item>
     </list>
-    <list name="FieldRequireness">
+    <list name="Modifier">
+      <item>const</item>
+    </list>
+    <list name="Attribute">
       <item>required</item>
       <item>optional</item>
-    </list>
-    <list name="Function">
       <item>oneway</item>
-      <item>void</item>
       <item>throws</item>
     </list>
     <list name="BaseType">
@@ -62,11 +60,17 @@
     <contexts>
       <context name="Normal" lineEndContext="#stay" attribute="Normal Text">
         <DetectSpaces/>
-        <keyword String="Header" context="#stay" attribute="Keyword"/>
-        <keyword String="NamespaceScope" context="#stay" attribute="Keyword"/>
+        <StringDetect
+            String="include" context="Import"
+            firstNonSpace="true" insensitive="false"/>
+        <StringDetect
+            String="namespace" context="Namespace"
+            firstNonSpace="true" insensitive="false"
+            attribute="Keyword"/>
+
         <keyword String="Definition" context="#stay" attribute="Keyword"/>
-        <keyword String="FieldRequireness" context="#stay" attribute="Keyword"/>
-        <keyword String="Function" context="#stay" attribute="Keyword"/>
+        <keyword String="Modifier" context="#stay" attribute="Keyword"/>
+        <keyword String="Attribute" context="#stay" attribute="Keyword"/>
         <keyword String="BaseType" context="#stay" attribute="Data Type"/>
         <keyword String="ContainerType" context="#stay" attribute="Data Type"/>
 
@@ -77,6 +81,27 @@
         <Detect2Chars
             char="/" char1="*" context="Commentar 2"
             attribute="Comment" beginRegion="Comment"/>
+      </context>
+
+      <context
+          name="Import" lineEndContext="#pop"
+          attribute="Import">
+        <LineContinue context="#stay" attribute="Import"/>
+        <RangeDetect
+            char="&quot;" char1="&quot;" context="#stay"
+            attribute="Import"/>
+        <RangeDetect
+            char="&lt;" char1="&gt;" context="#stay"
+            attribute="Import"/>
+      </context>
+
+      <context
+          name="Namespace" lineEndContext="#pop"
+          attribute="Normal Text">
+        <keyword
+            String="NamespaceScope" context="#stay"
+            attribute="Namespace Scope"/>
+        <LineContinue context="#stay" attribute="Normal Text"/>
       </context>
 
       <context name="Commentar 1" lineEndContext="#pop" attribute="Comment">
@@ -92,6 +117,8 @@
     </contexts>
 
     <itemDatas>
+      <itemData name="Import" defStyleNum="dsImport"/>
+      <itemData name="Namespace Scope" defStyleNum="dsExtension"/>
       <itemData name="Normal Text" defStyleNum="dsNormal"/>
       <itemData name="Keyword" defStyleNum="dsKeyword"/>
       <itemData name="Function" defStyleNum="dsFunction"/>
